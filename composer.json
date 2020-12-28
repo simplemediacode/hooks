@@ -2,11 +2,10 @@
     "name": "simplemediacode/hooks",
     "description": "Decoupled WordPress Hooks (filters and actions)",
     "type": "library",
-    "version": "1.0.0",
     "require": {
         "php": "~7.4|~8.0"
     },
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "rolandinsh",
