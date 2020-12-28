@@ -9,7 +9,9 @@ Simple copy of WordPress' [WP_Hook class](https://github.com/WordPress/WordPress
 Via **composer**
 
 `composer require simplemediacode/hooks`
+
 and then
+
 `use SimpleMediaCode\Hooks\WP_Hook;`
 
 See [ActionHooks.php](./example/ActionHooks.php) in example folder. Or wrap in your own solution. 
