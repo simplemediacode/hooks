@@ -9,11 +9,10 @@
     "authors": [
         {
             "name": "rolandinsh",
-            "email": "rolands@mediabox.lv"
+            "homepage": "https://mediabox.lv"
         },
         {
-            "name": "WordPress",
-            "homepage": "https://wordpress.org"
+            "name": "WordPress"
         }
     ],
     "autoload": {
@@ -21,5 +20,17 @@
             "SimpleMediaCode\\Hooks\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "keywords": [
+      "hooks",
+      "phphook",
+      "phphooks",
+      "wordpress",
+      "php",
+      "php7",
+      "php8"
+    ],
+    "support": {
+      "issues": "https://github.com/simplemediacode/hooks/issues"
+    }
 }
