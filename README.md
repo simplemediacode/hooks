@@ -34,3 +34,6 @@ More about how to use WordPress hooks (filters and actions) read at [wordpress.o
 ## Thanks to WordPress team and collaborators
 
 Most of job done by [WordPress team and collaborators](https://github.com/WordPress/WordPress)
+
+## License
+This library is released under the GLP-2 license. See the complete license in the bundled [LICENSE](./LICENSE) file.

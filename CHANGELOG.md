@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.6
+## 1.0.6 (unpublished)
 
 - `composer.json` update: authors.
 - updated [README.md](./README.md): removing "repositories" note
