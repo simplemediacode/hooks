@@ -6,7 +6,7 @@ Simple copy of WordPress' [WP_Hook class](https://github.com/WordPress/WordPress
 
 ## Usage
 
-Via **composer**
+Via **composer**<sup><a href="#composer-note">1</a></sup>
 
 `composer require simplemediacode/hooks`
 
@@ -17,6 +17,10 @@ and then
 See [ActionHooks.php](./example/ActionHooks.php) in `example` folder (which is autoloaded too). Or wrap in your own solution. 
 I use them inside classes and/or in helper functions.
 _Should_ be compatible with WordPress (works on my machine). "Tested" with PHP 7.4 and PHP 8.0.
+
+<sup id="composer-note">1</sup> You may need to update Your composer.json while Packagist updates:
+
+`"repositories": [{ "type": "vcs", "url": "https://github.com/simplemediacode/hooks" }],`
 
 ## Links
 
