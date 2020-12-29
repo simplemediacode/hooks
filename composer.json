@@ -19,7 +19,8 @@
     "autoload": {
         "psr-4": {
             "SimpleMediaCode\\Hooks\\": "src/"
-        }
+        },
+        "files": ["helpers/ActionHooks.php"]
     },
     "minimum-stability": "stable"
 }
