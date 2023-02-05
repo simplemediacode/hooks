@@ -504,7 +504,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @link https://www.php.net/manual/en/iterator.rewind.php
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function rewind(): void
     {
         reset($this->callbacks);
