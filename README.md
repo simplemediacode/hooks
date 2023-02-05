@@ -19,7 +19,7 @@ and then
 
 See [ActionHooks.php](./example/ActionHooks.php) in `example` folder (which is autoloaded too). Or wrap in your own solution. 
 I use them inside classes and/or in helper functions.
-_Should_ be compatible with WordPress (works on my machine). "Tested" with PHP 7.4 and PHP 8.0.
+_Should_ be compatible with WordPress (works on my machine). "Tested" with PHP 8.2.22.
 
 ## Changelog
 

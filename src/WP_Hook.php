@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace SimpleMediaCode\Hooks;
 
@@ -392,9 +392,12 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      * @param mixed $offset An offset to check for.
      * @return bool True if the offset exists, false otherwise.
      */
-    public function offsetExists($offset)
+    #[\ReturnTypeWillChange]
+    public function offsetExists($offset): bool
     {
         return isset($this->callbacks[$offset]);
+        // SOLUTION (not tested)
+        // return in_array($offset, array_keys($this->callbacks, $offset), true);
     }
 
     /**
@@ -405,7 +408,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      * @param mixed $offset The offset to retrieve.
      * @return mixed If set, the value at the specified offset, null otherwise.
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return isset($this->callbacks[$offset]) ? $this->callbacks[$offset] : null;
     }
@@ -418,7 +421,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      * @param mixed $offset The offset to assign the value to.
      * @param mixed $value The value to set.
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->callbacks[] = $value;
@@ -434,7 +437,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @param mixed $offset The offset to unset.
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->callbacks[$offset]);
     }
@@ -446,7 +449,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @return array Of callbacks at current priority.
      */
-    public function current()
+    public function current(): mixed
     {
         return current($this->callbacks);
     }
@@ -460,6 +463,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @return array Of callbacks at next priority.
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         return next($this->callbacks);
@@ -474,7 +478,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @return mixed Returns current priority on success, or NULL on failure
      */
-    public function key()
+    public function key(): mixed
     {
         return key($this->callbacks);
     }
@@ -488,7 +492,7 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @return bool Whether the current position is valid.
      */
-    public function valid()
+    public function valid(): bool
     {
         return key($this->callbacks) !== null;
     }
@@ -500,9 +504,11 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      *
      * @link https://www.php.net/manual/en/iterator.rewind.php
      */
-    public function rewind()
+    #[ReturnTypeWillChange]
+    public function rewind(): void
     {
         reset($this->callbacks);
+        //return;
     }
 
     /**
