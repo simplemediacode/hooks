@@ -2,7 +2,7 @@
     "name": "simplemediacode/hooks",
     "description": "Decoupled WordPress Hooks (filters and actions)",
     "type": "library",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "require": {
         "php": "~8.0|~8.1|~8.2"
     },
@@ -11,6 +11,11 @@
         {
             "name": "Republa",
             "homepage": "https://republa.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Rolands Umbrovskis",
+            "homepage": "https://umbrovskis.com",
             "role": "Developer"
         },
         {

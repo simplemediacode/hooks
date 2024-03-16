@@ -464,9 +464,9 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      * @return array Of callbacks at next priority.
      */
     #[\ReturnTypeWillChange]
-    public function next()
+    public function next(): void
     {
-        return next($this->callbacks);
+        next($this->callbacks);
     }
 
     /**
