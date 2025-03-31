@@ -1,6 +1,12 @@
 # Changelog
 
-## 2.0.0 (unreleased)
+## 2.0.1
+
+### Changes
+- Changed namespace vendor name from `SimpeMediaCode` to `Simplemediacode`.
+
+
+## 2.0.0
 
 ### Breaking Changes
 - Complete refactoring to modern PHP architecture
