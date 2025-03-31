@@ -50,14 +50,11 @@ use Simplemediacode\Hooks\HooksInterface;
 
 class MyClass
 {
-    private array $config;
     private ?HooksInterface $hooks;
 
     public function __construct(
-        array $config,
         ?HooksInterface $hooks = null
     ) {
-        $this->config = $config;
         $this->hooks = $hooks;
     }
     
