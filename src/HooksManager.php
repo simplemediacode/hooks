@@ -1,5 +1,5 @@
 <?php
-namespace SimpleMediaCode\Hooks;
+namespace Simplemediacode\Hooks;
 
 /**
  * Main implementation of the HooksInterface.

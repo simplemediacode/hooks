@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleMediaCode\Hooks;
+namespace Simplemediacode\Hooks;
 
 /**
  * Core class that implements the hook functionality.

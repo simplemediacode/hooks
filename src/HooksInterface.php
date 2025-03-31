@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleMediaCode\Hooks;
+namespace Simplemediacode\Hooks;
 
 /**
  * Interface for the hooks system.

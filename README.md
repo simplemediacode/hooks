@@ -23,7 +23,7 @@ composer require simplemediacode/hooks
 ### Using the Static Facade
 
 ```php
-use SimpleMediaCode\Hooks\Hooks;
+use Simplemediacode\Hooks\Hooks;
 
 // Add a filter
 Hooks::addFilter('content', function($content) {
@@ -46,7 +46,7 @@ Hooks::doAction('save_post', 123);
 ### Using Dependency Injection
 
 ```php
-use SimpleMediaCode\Hooks\HooksInterface;
+use Simplemediacode\Hooks\HooksInterface;
 
 class MyClass
 {
