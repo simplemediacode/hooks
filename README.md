@@ -1,39 +1,100 @@
-# Decoupled WordPress Hooks (filters and actions)
+# Modern PHP Hooks System
 
-Simple copy of WordPress' [WP_Hook class](https://github.com/WordPress/WordPress/blob/3cee52b3622cd6eab054db09074f220270a09243/wp-includes/class-wp-hook.php) with some adjustments to use outside of [WordPress](https://wordpress.org).
+A lightweight, dependency-free implementation of an action and filter hook system inspired by WordPress hooks but designed for modern PHP applications.
 
-**No dependencies**!
-## Why?
+## Features
 
-Because I like these WordPress "filters" and they "cost" almost nothing. And sine I use them in other projects it's easier to make them public anyways.
+- **Modern PHP Support**: Fully typed, supports PHP 8.0+
+- **Dependency Injection Ready**: Use the `HooksInterface` in your classes
+- **Static Facade**: Convenient static methods for quick integration
+- **No Dependencies**: Lightweight implementation with zero dependencies
+- **WordPress Inspired**: Familiar API if you're coming from WordPress
+
+## Installation
+
+Via **composer**:
+
+```bash
+composer require simplemediacode/hooks
+```
 
 ## Usage
 
-Via **composer**
+### Using the Static Facade
 
-`composer require simplemediacode/hooks`
+```php
+use SimpleMediaCode\Hooks\Hooks;
 
-and then
+// Add a filter
+Hooks::addFilter('content', function($content) {
+    return strtoupper($content);
+});
 
-`use SimpleMediaCode\Hooks\WP_Hook;`
+// Apply a filter
+$content = Hooks::applyFilters('content', 'Hello World'); // Returns "HELLO WORLD"
 
-See [ActionHooks.php](./example/ActionHooks.php) in `example` folder (which is autoloaded too). Or wrap in your own solution. 
-I use them inside classes and/or in helper functions.
-_Should_ be compatible with WordPress (works on my machine). "Tested" with PHP 8.2.22.
+// Add an action
+Hooks::addAction('save_post', function($postId) {
+    // Do something when a post is saved
+    echo "Post {$postId} was saved!";
+});
+
+// Execute an action
+Hooks::doAction('save_post', 123);
+```
+
+### Using Dependency Injection
+
+```php
+use SimpleMediaCode\Hooks\HooksInterface;
+
+class MyClass
+{
+    private array $config;
+    private ?HooksInterface $hooks;
+
+    public function __construct(
+        array $config,
+        ?HooksInterface $hooks = null
+    ) {
+        $this->config = $config;
+        $this->hooks = $hooks;
+    }
+    
+    public function processContent(string $content): string
+    {
+        // If hooks are available, filter the content
+        if ($this->hooks) {
+            $content = $this->hooks->executeHook('content', $content);
+        }
+        
+        return $content;
+    }
+}
+```
+
+### Extending with Custom Implementations
+
+You can implement your own version of `HooksInterface` to provide custom hook functionality:
+
+```php
+$customHooks = new MyCustomHooksImplementation();
+Hooks::setInstance($customHooks);
+```
+
+## Migration from WP_Hook
+
+This package is a complete rewrite of the original WordPress hook system. Key differences:
+
+- Renamed `WP_Hook` to `Hook`
+- Introduced proper interfaces for better type safety
+- Added dependency injection support
+- Replaced global variables with proper class properties
+- Improved naming conventions and method signatures
 
 ## Changelog
 
 Read at [CHANGELOG.md](./CHANGELOG.md).
 
-## Links
-
-More about how to use WordPress hooks (filters and actions) read at [wordpress.org: "WP_Hook: Next Generation Actions and Filters"](https://make.wordpress.org/core/2016/09/08/wp_hook-next-generation-actions-and-filters/). Instead of `$wp_*` here use `$wphook_*` for compatiblity.
-
----
-
-## Thanks to WordPress team and collaborators
-
-Most of job done by [WordPress team and collaborators](https://github.com/WordPress/WordPress)
-
 ## License
-This library is released under the GLP-2 license. See the complete license in the bundled [LICENSE](./LICENSE) file.
+This library is released under the GPL-2.0 license. See the complete license in the bundled [LICENSE](./LICENSE) file.

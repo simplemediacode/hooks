@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.0 (unreleased)
+
+### Breaking Changes
+- Complete refactoring to modern PHP architecture
+- Renamed `WP_Hook` to `Hook`
+- Introduced `HooksInterface` and `HooksManager`
+- Removed global variables and functions
+- Added static `Hooks` facade for backward compatibility
+- Improved type safety with PHP 8+ return types
+
+### Bug Fixes
+- Added missing method definitions to `HooksInterface`: `getHookCount()`, `isExecutingHook()`, and `getCurrentHook()`
+- Fixed consistency between interface methods and their implementations
+
 ## 1.0.6 (unpublished)
 
 - `composer.json` update: authors.
@@ -14,7 +28,7 @@
 
 **initial**
 
-- remove dependency from internal WordPress filesystem;
-- renaming `$wp_`* to `$wphook_`* to avoid conflict wirth WordPress; 
-- renaming `_*()` functions to "noraml". 
+- remove dependency from internal WordPress filesystem
+- renaming `$wp_`* to `$wphook_`* to avoid conflict with WordPress 
+- renaming `_*()` functions to "normal"
     - Example: `_wp_filter_build_unique_id()` => `wp_filter_build_unique_id()`
