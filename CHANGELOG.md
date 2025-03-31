@@ -8,6 +8,7 @@
 
 ## 2.0.0
 
+un-WordPress-ed
 ### Breaking Changes
 - Complete refactoring to modern PHP architecture
 - Renamed `WP_Hook` to `Hook`
@@ -19,6 +20,15 @@
 ### Bug Fixes
 - Added missing method definitions to `HooksInterface`: `getHookCount()`, `isExecutingHook()`, and `getCurrentHook()`
 - Fixed consistency between interface methods and their implementations
+
+## 1.0.8
+### Changes
+- PHP 8.3 and 8.4 support tags
+
+## 1.0.7
+### Changes
+- Better compitability with PHP8
+- Moves forward to the next element in `next` method.
 
 ## 1.0.6 (unpublished)
 
