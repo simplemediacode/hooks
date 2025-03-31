@@ -1,8 +1,8 @@
 {
     "name": "simplemediacode/hooks",
-    "description": "Decoupled WordPress Hooks (filters and actions)",
+    "description": "Modern PHP Hooks System for PHP applications.",
     "type": "library",
-    "version": "1.0.8",
+    "version": "2.0.0",
     "require": {
         "php": "~8.0|~8.1|~8.2|~8.3|~8.4"
     },
@@ -17,9 +17,6 @@
             "name": "Rolands Umbrovskis",
             "homepage": "https://umbrovskis.com",
             "role": "Developer"
-        },
-        {
-            "name": "WordPress"
         }
     ],
     "autoload": {
