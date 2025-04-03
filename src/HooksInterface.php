@@ -4,78 +4,98 @@ namespace Simplemediacode\Hooks;
 
 /**
  * Interface for the hooks system.
+ * 
+ * Defines the contract for implementing a hooks system with actions and filters.
  */
 interface HooksInterface
 {
     /**
      * Add a callback to a hook.
-     *
-     * @param string   $tag           The name of the hook.
-     * @param callable $callback      The callback function.
-     * @param int      $priority      Optional. Priority of the callback. Default 10.
-     * @param int      $accepted_args Optional. Number of arguments the callback accepts. Default 1.
-     * @return bool Always returns true.
+     * 
+     * @param string   $hookName     The name of the hook to which the callback is added.
+     * @param callable $callback     The callback function to be executed when the hook is triggered.
+     * @param int      $priority     Optional. The priority at which the function should be executed. Default 10.
+     * @param int      $acceptedArgs Optional. The number of arguments the function accepts. Default 1.
+     * 
+     * @return bool True on success, false on failure.
      */
-    public function addHook(string $tag, callable $callback, int $priority = 10, int $accepted_args = 1): bool;
+    public function add(string $hookName, callable $callback, int $priority = 10, int $acceptedArgs = 1): bool;
     
     /**
      * Remove a callback from a hook.
-     *
-     * @param string   $tag           The name of the hook.
-     * @param callable $callback      The callback to remove.
-     * @param int      $priority      Optional. Priority of the callback. Default 10.
-     * @return bool Whether the function existed before it was removed.
+     * 
+     * @param string   $hookName The name of the hook to which the callback is attached.
+     * @param callable $callback The callback to be removed.
+     * @param int      $priority The priority of the callback. Default 10.
+     * 
+     * @return bool True if the callback was found and removed, false otherwise.
      */
-    public function removeHook(string $tag, callable $callback, int $priority = 10): bool;
-    
-    /**
-     * Check if a hook has any callbacks registered.
-     *
-     * @param string        $tag           The name of the hook.
-     * @param callable|null $callback      Optional. Specific callback to check for. Default null.
-     * @return bool|int False if no callbacks are registered, true if callbacks exist, 
-     *                  or the priority of the specific callback if it exists.
-     */
-    public function hasHook(string $tag, ?callable $callback = null): bool|int;
-    
-    /**
-     * Execute hooks registered for a specific tag.
-     *
-     * @param string $tag  The name of the hook.
-     * @param mixed  $args Arguments to pass to callbacks.
-     * @return mixed Value after all hooks are applied (for filters) or void (for actions).
-     */
-    public function executeHook(string $tag, mixed $value = null, array $args = []): mixed;
+    public function remove(string $hookName, callable $callback, int $priority = 10): bool;
     
     /**
      * Remove all callbacks from a hook.
-     *
-     * @param string    $tag      The name of the hook.
-     * @param int|false $priority Optional. Priority to remove. Default false (all priorities).
-     * @return bool Always returns true.
+     * 
+     * @param string   $hookName The name of the hook to remove callbacks from.
+     * @param int|null $priority Optional. The priority to remove callbacks from. If null, removes all priorities. Default null.
+     * 
+     * @return bool True if callbacks were removed, false if no callbacks existed.
      */
-    public function removeAllHooks(string $tag, $priority = false): bool;
+    public function removeAll(string $hookName, ?int $priority = null): bool;
     
     /**
-     * Get the number of times an action has been executed.
-     *
-     * @param string $tag The name of the action hook.
-     * @return int The count.
+     * Check if a hook has callbacks registered.
+     * 
+     * @param string        $hookName The name of the hook to check.
+     * @param callable|null $callback Optional. The specific callback to check for. Default null.
+     * 
+     * @return bool|int If $callback is null, returns boolean whether any callbacks are registered.
+     *                  If $callback is specified, returns the priority of the callback if found, or false if not found.
      */
-    public function getHookCount(string $tag): int;
+    public function has(string $hookName, ?callable $callback = null): bool|int;
     
     /**
-     * Check if a hook is currently being processed.
-     *
-     * @param string|null $tag Optional. The hook to check. Default null.
-     * @return bool Whether the hook is being processed.
+     * Apply a filter hook to a value.
+     * 
+     * @param string $hookName The name of the filter hook.
+     * @param mixed  $value    The value to filter.
+     * @param mixed  ...$args  Additional arguments to pass to the callback functions.
+     * 
+     * @return mixed The filtered value after all hooked callbacks are applied.
      */
-    public function isExecutingHook(?string $tag = null): bool;
+    public function filter(string $hookName, mixed $value, ...$args): mixed;
     
     /**
-     * Get the name of the current hook being processed.
-     *
-     * @return string|null The name of the hook or null if no hook is being processed.
+     * Execute an action hook.
+     * 
+     * @param string $hookName The name of the action hook.
+     * @param mixed  ...$args  Arguments to pass to the callbacks.
+     * 
+     * @return void
      */
-    public function getCurrentHook(): ?string;
+    public function action(string $hookName, ...$args): void;
+    
+    /**
+     * Get information about the current hook being executed.
+     * 
+     * @return string|null The name of the current hook, or null if no hook is being executed.
+     */
+    public function current(): ?string;
+    
+    /**
+     * Check if a hook is currently being executed.
+     * 
+     * @param string|null $hookName Optional. The name of the hook to check. If null, checks if any hook is executing. Default null.
+     * 
+     * @return bool True if the specified hook is executing, or if any hook is executing when no hook specified.
+     */
+    public function isExecuting(?string $hookName = null): bool;
+    
+    /**
+     * Get the execution count for a hook.
+     * 
+     * @param string $hookName The name of the hook to check.
+     * 
+     * @return int The number of times the hook has been executed.
+     */
+    public function count(string $hookName): int;
 }

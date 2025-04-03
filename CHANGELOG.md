@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.0
+
+### Changes
+- Refactored code to follow DRY and KISS principles
+- Removed redundant `Hook` class in favor of direct implementation in `HooksManager`
+- Standardized method naming across the codebase
+- Improved method documentation with comprehensive PHPDoc comments
+- Optimized hook callback execution
+- Fixed interface implementation consistency
+
 ## 2.0.1
 
 ### Changes
