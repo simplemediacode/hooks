@@ -160,6 +160,31 @@ class HooksManager implements HooksInterface {
     }
     
     /**
+     * Apply a filter hook to a value.
+     * 
+     * @param string $hookName The name of the filter hook.
+     * @param mixed  $value    The value to filter.
+     * @param mixed  ...$args  Additional arguments to pass to callbacks.
+     * 
+     * @return mixed The filtered value.
+     */
+    public function applyFilters(string $hookName, mixed $value, ...$args): mixed {
+        return $this->filter($hookName, $value, ...$args);
+    }
+    
+    /**
+     * Execute an action hook.
+     * 
+     * @param string $hookName The name of the action hook.
+     * @param mixed  ...$args  Arguments to pass to callbacks.
+     * 
+     * @return void
+     */
+    public function doAction(string $hookName, ...$args): void {
+        $this->action($hookName, ...$args);
+    }
+    
+    /**
      * Execute an action hook.
      * 
      * @param string $hookName The name of the action hook.

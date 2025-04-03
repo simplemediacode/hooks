@@ -75,6 +75,27 @@ interface HooksInterface
     public function action(string $hookName, ...$args): void;
     
     /**
+     * Apply a filter hook to a value.
+     * 
+     * @param string $hookName The name of the filter hook.
+     * @param mixed  $value    The value to filter.
+     * @param mixed  ...$args  Additional arguments to pass to callbacks.
+     * 
+     * @return mixed The filtered value.
+     */
+    public function applyFilters(string $hookName, mixed $value, ...$args): mixed;
+    
+    /**
+     * Execute an action hook.
+     * 
+     * @param string $hookName The name of the action hook.
+     * @param mixed  ...$args  Arguments to pass to callbacks.
+     * 
+     * @return void
+     */
+    public function doAction(string $hookName, ...$args): void;
+    
+    /**
      * Get information about the current hook being executed.
      * 
      * @return string|null The name of the current hook, or null if no hook is being executed.
